@@ -1,0 +1,27 @@
+{
+  "name": "carvana-puppeteer",
+  "version": "1.0.0",
+  "description": "Carvana Puppeteer Automation",
+  "main": "main.js",
+  "author": {
+    "name": "Ashhad Rasool",
+    "email": "ashhad.rasool22@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ashhadrasool/carvana-puppeteer"
+  },
+  "scripts": {
+    "start": "node main.js"
+  },
+  "dependencies": {
+    "puppeteer": "^21.1.0",
+    "winston": "^3.10.0"
+  },
+  "devDependencies": {
+    "dotenv": "^16.3.1",
+    "eslint": "^8.48.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.28.1"
+  }
+}

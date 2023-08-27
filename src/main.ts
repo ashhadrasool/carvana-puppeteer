@@ -12,11 +12,7 @@ if (process.platform === 'darwin') {
 async function scrapWebsite(path: string) {
     const browser = new Browser(path);
     await browser.init();
-
-    logger.info(['ashhad']);
-
     try {
-
         const page = await browser.getPage();
         await page.setRequestInterception(true);
         // @ts-ignore
@@ -34,7 +30,6 @@ async function scrapWebsite(path: string) {
 
         const cars = await page.evaluate(() => {
             const carElements = Array.from(document.querySelectorAll('.result-tile'));
-
             return carElements.map((carElement) => {
                 const makeModelElement = carElement.querySelector('.make-model');
                 const yearMakeModel = makeModelElement.querySelector('.year-make').textContent;
@@ -47,11 +42,10 @@ async function scrapWebsite(path: string) {
                 const inventoryType = inventoryTypeElement.textContent.trim();
 
                 const termsElement = carElement.querySelector('.terms');
-                const monthlyPaymentElement = termsElement.querySelector('[data-qa="monthly-payment-tooltip"]');
-                const monthlyPayment = monthlyPaymentElement.textContent.trim();
-
-                const downPaymentElement = termsElement.querySelector('.down-payment');
-                const downPayment = downPaymentElement.textContent.trim();
+                const monthlyPaymentElement = termsElement?.querySelector('[data-qa="monthly-payment-tooltip"]');
+                const monthlyPayment = monthlyPaymentElement?.textContent?.trim();
+                const downPaymentElement = termsElement?.querySelector('.down-payment');
+                const downPayment = downPaymentElement?.textContent.trim();
 
                 return {
                     year,

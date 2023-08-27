@@ -16,12 +16,21 @@ async function scrapWebsite(path: string) {
     logger.info(['ashhad']);
 
     try {
-        const page = await browser.getPage();
-        await page.goto('https://www.carvana.com/cars', { waitUntil: 'domcontentloaded' });
-        // await page.waitForSelector('a[href="/cars"]');
-        // await page.click('a[href="/cars"]');
 
-        await new Promise((resolve) => { setTimeout(resolve, 5000); });
+        const page = await browser.getPage();
+        await page.setRequestInterception(true);
+        // @ts-ignore
+        page.on('request', (request) => {
+            if (request.resourceType() === 'image') {
+                request.abort();
+            } else {
+                request.continue();
+            }
+        });
+
+        await page.goto('https://www.carvana.com/cars', { waitUntil: 'domcontentloaded' });
+
+        // await new Promise((resolve) => { setTimeout(resolve, 5000); });
 
         const cars = await page.evaluate(() => {
             const carElements = Array.from(document.querySelectorAll('.result-tile'));

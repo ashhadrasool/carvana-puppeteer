@@ -1,7 +1,8 @@
-import { chromium } from 'playwright-extra';
+// import { chromium } from 'playwright-extra';
 import stealth from 'puppeteer-extra-plugin-stealth';
+import puppeteer from 'puppeteer';
 
-chromium.use(stealth());
+// chromium.use(stealth());
 
 class Browser {
     private exePath: any;
@@ -13,7 +14,7 @@ class Browser {
     }
 
     async init() {
-        this.chrome = await chromium.launch({
+        this.chrome = await puppeteer.launch({
             executablePath: this.exePath,
             headless: false,
         });
@@ -24,8 +25,9 @@ class Browser {
     }
 
     async getPage() {
-        const context = await this.chrome.newContext();
-        return context && context.newPage();
+        // const context = await this.chrome.newContext();
+        // return context && context.newPage();
+        return this.chrome.newPage();
     }
 }
 

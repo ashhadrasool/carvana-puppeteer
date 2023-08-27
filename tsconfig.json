@@ -1,7 +1,10 @@
 {
   "extends": "@tsconfig/node-lts/tsconfig.json",
   "compilerOptions": {
-    "outDir": "dist"
+    "lib": ["es5", "es6", "dom"],
+    "esModuleInterop": true,
+    "outDir": "dist",
+    "strictNullChecks": false
   },
   "include": ["src"],
   "exclude": ["node_modules"]
